@@ -24,18 +24,6 @@ class Search extends React.Component {
           console.log(errors);
         });
     });
-    //const fd = new FormData();
-    // fd.append("name", data);
-    // axios
-    //   .post("https://restcountries.eu/rest/v2/", fd)
-    //   .then((res) => {
-    //     axios.get("https://restcountries.eu/rest/v2/").then((res) => {
-    //       this.setState({ search_data: res.data });
-    //     });
-    //   })
-    //   .catch((errors) => {
-    //     console.log(errors);
-    //   });
   }
 
   render() {
@@ -46,8 +34,8 @@ class Search extends React.Component {
           <div
             className="container"
             style={{
-              height: 500,
-              marginTop: 200,
+              height: 400,
+              marginTop: 100,
               backgroundColor: "grey",
               textAlign: "center",
             }}
