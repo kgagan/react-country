@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import Header from "./Home";
 import axios from "axios";
 
 class Search extends React.Component {
@@ -12,18 +13,31 @@ class Search extends React.Component {
   }
   componentDidMount() {
     //const data = this.state.s;
-    const data = this.props.match.params.url;
-    const fd = new FormData();
-    fd.append("subregion", data);
-    axios
-      .get("https://restcountries.eu/rest/v2/name/India")
-      .then((res) => {
-        this.setState({ search_data: res.data });
-      })
-      .catch((errors) => {
-        console.log(errors);
-      });
+    const key = this.props.match.params.url;
+    fetch("https://restcountries.eu/rest/v2/name/" + key).then((data) => {
+      data
+        .json()
+        .then((resp) => {
+          this.setState({ search_data: resp });
+        })
+        .catch((errors) => {
+          console.log(errors);
+        });
+    });
+    //const fd = new FormData();
+    // fd.append("name", data);
+    // axios
+    //   .post("https://restcountries.eu/rest/v2/", fd)
+    //   .then((res) => {
+    //     axios.get("https://restcountries.eu/rest/v2/").then((res) => {
+    //       this.setState({ search_data: res.data });
+    //     });
+    //   })
+    //   .catch((errors) => {
+    //     console.log(errors);
+    //   });
   }
+
   render() {
     return (
       <div>
@@ -32,8 +46,8 @@ class Search extends React.Component {
           <div
             className="container"
             style={{
-              height: 400,
-              marginTop: 100,
+              height: 500,
+              marginTop: 200,
               backgroundColor: "grey",
               textAlign: "center",
             }}
@@ -46,7 +60,7 @@ class Search extends React.Component {
                 <table class="table table-hover table-bordered">
                   <thead>
                     <tr>
-                      <th>subregion</th>
+                      <th>Name</th>
                       <th>population</th>
                       <th>latlng</th>
                       <th>flag</th>
@@ -56,7 +70,7 @@ class Search extends React.Component {
                     {this.state.search_data.map((result) => {
                       return (
                         <tr>
-                          <td>{result.subregion}</td>
+                          <td>{result.name}</td>
                           <td>{result.population}</td>
                           <td>{result.latlng}</td>
                           <td>
