@@ -34,7 +34,7 @@ class Search extends React.Component {
           <div
             className="container"
             style={{
-              height: 400,
+              height: "auto",
               marginTop: 100,
               backgroundColor: "grey",
               textAlign: "center",
